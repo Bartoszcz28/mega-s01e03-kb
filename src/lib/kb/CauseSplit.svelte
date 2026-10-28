@@ -7,13 +7,13 @@
   let { ticket }: { ticket: number } = $props();
 
   const merged = $derived(uniqueById(reports as Report[]).filter((r) => r.mergedInto === ticket));
-  // A report the desk read as a one-day move is its own problem, whatever its tenant says.
-  const oneDay = (r: Report) => notes.oneDayMove.includes(r.id);
-  const count = (pick: (r: Report) => boolean) => merged.filter(pick).length;
+  // Counted the desk's way: where the tenant files each report. Reports the desk read as a
+  // one-day move stay under their cause and are footnoted.
+  const count = (cause: string) => merged.filter((r) => causeOf(r, tenantOf(r)) === cause).length;
+  const moved = $derived(merged.filter((r) => notes.oneDayMove.includes(r.id)).length);
   const rows = $derived([
-    { problem: 'parser reads dates month first', cause: 'parser', n: count((r) => !oneDay(r) && causeOf(r, tenantOf(r)) === 'parser') },
-    { problem: 'booking-v3 form hint says MM/DD/YYYY', cause: 'hint', n: count((r) => !oneDay(r) && causeOf(r, tenantOf(r)) === 'hint') },
-    { problem: 'date lands exactly one day off', cause: 'one-day', n: count(oneDay) },
+    { problem: 'parser reads dates month first', cause: 'parser', n: count('parser') },
+    { problem: 'booking-v3 form hint says MM/DD/YYYY', cause: 'hint', n: count('hint') },
   ]);
 </script>
 
@@ -27,3 +27,5 @@
     {/each}
   </tbody>
 </table>
+
+<p class="note">{moved} of the parser reports read as a one-day move; filed under <code>parser</code> by tenant.</p>
