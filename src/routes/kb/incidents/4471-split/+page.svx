@@ -1,0 +1,43 @@
+---
+layout: runbook
+title: '#4471 · three problems, not one'
+owner: support desk
+status: split
+reviewed: 2026-10-28
+signature: Bartosz
+---
+
+<script>
+  import CauseSplit from '#lib/kb/CauseSplit.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+</script>
+
+#4471 was merged as one issue, "dates parse mm/dd in eu locales". Read against the tenant
+directory, its reports are three different problems. One ticket each.
+
+<Callout>
+Not one known issue. The parser fix covers the first problem only.
+</Callout>
+
+## The split
+
+<CauseSplit ticket={4471} />
+
+## What each one is
+
+- **Parser.** The shared parser reads every date month first. Every day-first tenant is hit,
+  in the app and by email.
+- **Form hint.** `booking-v3` prints `MM/DD/YYYY` under the date field, so people on
+  alder.physio, copper.studio and pale.harbour type month first. Form reports only. Intake
+  tagged many of these `parser`; it guessed from the browser.
+- **One day off.** Five reports describe a move of exactly one day, not a swapped month and
+  day: R-41202, R-41209, R-41236, R-41344, R-41620. They point at time zones. The tenant
+  directory files them under `parser`, so the old table counted them there.
+
+## Lessons
+
+- Count by cause, not by wording. Reports that sound alike can have different owners.
+- Intake's tag is a guess. The tenant and its form decide the cause.
+
+<RenderStamp {signature} />
