@@ -4,7 +4,7 @@
 <h1>#4471 · two problems, not one</h1>
 <p>owner <b>support desk</b> · split · reviewed 2026-10-28</p>
 <p>#4471 was merged as one issue, "dates parse mm/dd in eu locales". Read against the tenant directory, its reports are three different problems. One ticket each.</p>
-<blockquote>Not one known issue. The parser fix covers the first problem only.</blockquote>
+<blockquote>Two issues, two outcomes. Parser: fixed. Form hint: won't fix, the booking-v3 form is retired.</blockquote>
 <h2>The split</h2>
 <p><strong>412</strong> reports merged into #4471 · <strong>2</strong> problems</p>
 <table border="1" cellpadding="4" style="border-collapse:collapse"><tr><th>problem</th><th>cause</th><th>reports</th></tr>
@@ -12,6 +12,7 @@
 <tr><td>booking-v3 form hint says MM/DD/YYYY</td><td><code>hint</code></td><td>33</td></tr>
 </table>
 <p>5 of the parser reports read as a one-day move; filed under <code>parser</code> by tenant.</p>
+<h2>Outcome</h2><p>Engineering closed #4471 on 5 October. Parser: fixed. Form hint: won't fix, because the booking-v3 form is retired.</p>
 <h2>Lessons</h2><ul><li>Count by cause, not by wording.</li><li>Intake's tag is a guess. The tenant and its form decide the cause.</li></ul>
 <p style="font:0.85rem monospace">desk ref <b>DR-HVND-1NHA</b></p>
 </body>

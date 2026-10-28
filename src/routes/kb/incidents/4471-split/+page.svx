@@ -2,7 +2,7 @@
 layout: runbook
 title: '#4471 · two problems, not one'
 owner: support desk
-status: split
+status: resolved
 reviewed: 2026-10-28
 signature: v1.eyJzdWIiOiI1MTIiLCJhdWQiOiJjaGFsbGVuZ2U6d2hhdC1pdC1zaG93cyIsImlhdCI6MTc5MzIxMDM3MSwiZXhwIjoxNzkzMjk2NzcxfQ.uESsGNHGASxbV-vxmkKoLNP5sZM2PkqVF5NN7jW1pZ4
 ---
@@ -17,7 +17,7 @@ signature: v1.eyJzdWIiOiI1MTIiLCJhdWQiOiJjaGFsbGVuZ2U6d2hhdC1pdC1zaG93cyIsImlhdC
 directory, its reports are two different problems. One ticket each.
 
 <Callout>
-Not one known issue. The parser fix covers the first problem only.
+Two issues, two outcomes. Parser: fixed. Form hint: won't fix, the booking-v3 form is retired.
 </Callout>
 
 ## The split
@@ -33,6 +33,11 @@ Not one known issue. The parser fix covers the first problem only.
   tagged many of these `parser`; it guessed from the browser.
 - **Note.** Five parser reports read as a one-day move (R-41202, R-41209, R-41236, R-41344,
   R-41620). The desk files them under `parser` by tenant, and counts them there.
+
+## Outcome
+
+Engineering closed #4471 on 5 October. Parser: fixed (`fix(dates): parse dd/mm for eu locales`).
+Form hint: won't fix, because the booking-v3 form is retired.
 
 ## Lessons
 
